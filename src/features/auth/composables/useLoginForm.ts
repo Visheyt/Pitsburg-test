@@ -1,23 +1,13 @@
 import router from '@/router'
-import { ref, computed, watch } from 'vue'
+import { reactive, computed } from 'vue'
 
 interface FormData {
   email: string
   password: string
 }
 
-interface FormErrors {
-  email: string
-  password: string
-}
-
 export const useLoginForm = () => {
-  const form = ref<FormData>({
-    email: '',
-    password: '',
-  })
-
-  const errors = ref<FormErrors>({
+  const form = reactive<FormData>({
     email: '',
     password: '',
   })
@@ -28,35 +18,20 @@ export const useLoginForm = () => {
   }
 
   const validatePassword = (password: string): string => {
-    return password.trim().length >= 3 ? '' : 'Пароль должен состоять минимум из 3 знаков'
+    return password.trim().length >= 5 ? '' : 'Пароль должен состоять минимум из 5 знаков'
   }
 
-  watch(
-    () => form.value.email,
-    (newVal) => {
-      errors.value.email = validateEmail(newVal)
-    },
-  )
-
-  watch(
-    () => form.value.password,
-    (newVal) => {
-      errors.value.password = validatePassword(newVal)
-    },
-  )
-
-  const validate = (): boolean => {
-    errors.value.email = validateEmail(form.value.email)
-    errors.value.password = validatePassword(form.value.password)
-    return !errors.value.email && !errors.value.password
-  }
+  const errors = computed(() => ({
+    email: validateEmail(form.email),
+    password: validatePassword(form.password),
+  }))
 
   const isValid = computed(() => {
     return !errors.value.email && !errors.value.password
   })
 
   const submit = async () => {
-    if (!validate()) return
+    if (!isValid.value) return
 
     router.push('/recipes')
   }

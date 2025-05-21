@@ -24,6 +24,7 @@ const { form, errors, isValid, submit } = useLoginForm()
             placeholder="Введите email"
             v-model="form.email"
             :error="errors.email"
+            :style="`${errors.email ? 'outline:1px solid red' : ''}`"
           />
           <p v-if="errors.email" class="error">{{ errors.email }}</p>
         </div>
@@ -36,6 +37,7 @@ const { form, errors, isValid, submit } = useLoginForm()
             placeholder="Введите пароль"
             v-model="form.password"
             :error="errors.password"
+            :style="`${errors.password ? 'outline:1px solid red' : ''}`"
           />
           <p v-if="errors.password" class="error">{{ errors.password }}</p>
         </div>
