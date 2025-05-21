@@ -1,5 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import LogoImage from '@/shared/svg/LogoImage.vue'
+</script>
 
 <template>
-  <main></main>
+  <main>
+    <LogoImage />
+  </main>
 </template>
