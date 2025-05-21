@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { tableHeadItems } from '@/data/tablehead-items'
 import RecipeTableRow from './components/RecipeTableRow.vue'
+import { onMounted } from 'vue'
+import { getRecipes } from '@/api/getRecipes'
+import { useFetch } from '@/shared/composables/useFetch'
+import type { RecipesResponse } from '@/api/types'
+
+const { data, error, loading, execute } = useFetch<RecipesResponse>()
+
+onMounted(() => {
+  execute(getRecipes)
+})
 </script>
 
 <template>
@@ -13,36 +23,14 @@ import RecipeTableRow from './components/RecipeTableRow.vue'
       </thead>
       <tbody>
         <RecipeTableRow
-          name="Classic Margherita Pizza"
-          cuisine="Italian"
-          difficulty="easy"
-          :calories="350"
-          :time="35"
-          :tags="['Salad', 'Chicken']"
-        />
-        <RecipeTableRow
-          name="Classic Margherita Pizza"
-          cuisine="Italian"
-          difficulty="easy"
-          :calories="350"
-          :time="35"
-          :tags="['Salad', 'Chicken']"
-        />
-        <RecipeTableRow
-          name="Classic Margherita Pizza"
-          cuisine="Italian"
-          difficulty="easy"
-          :calories="350"
-          :time="35"
-          :tags="['Salad', 'Chicken']"
-        />
-        <RecipeTableRow
-          name="Classic Margherita Pizza"
-          cuisine="Italian"
-          difficulty="easy"
-          :calories="350"
-          :time="35"
-          :tags="['Salad', 'Chicken']"
+          v-for="recipe in data?.recipes"
+          :key="recipe.id"
+          :name="recipe.name"
+          :cuisine="recipe.cuisine"
+          :difficulty="recipe.difficulty"
+          :time="recipe.cookTimeMinutes"
+          :tags="recipe.tags"
+          :calories="recipe.caloriesPerServing"
         />
       </tbody>
     </table>
@@ -72,6 +60,7 @@ import RecipeTableRow from './components/RecipeTableRow.vue'
   padding: 12px 0px 12px 12px;
   text-align: left;
   box-shadow: 0px -1px 0px 0px #e5e9eb inset;
+  color: #5a5c5f;
 }
 .recipe-table td {
   padding: 12px 0px 12px 16px;

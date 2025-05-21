@@ -11,6 +11,17 @@ defineProps<{
   time: number
   tags: string[]
 }>()
+
+const translateDifficulty = (difficulty: BadgeType) => {
+  switch (difficulty) {
+    case 'Easy':
+      return 'Легко'
+    case 'Medium':
+      return 'Средний'
+    case 'Hard':
+      return 'Тяжелый'
+  }
+}
 </script>
 
 <template>
@@ -18,7 +29,7 @@ defineProps<{
     <td class="name-td">{{ name }}</td>
     <td class="cuisine-td">{{ cuisine }}</td>
     <td class="badge-td">
-      <Badge :badge-style="difficulty">{{ difficulty }}</Badge>
+      <Badge :badge-style="difficulty">{{ translateDifficulty(difficulty) }}</Badge>
     </td>
     <td class="calories-td">{{ `${calories} кал.` }}</td>
     <td class="time-td">{{ `${time} минут` }}</td>
@@ -54,6 +65,7 @@ defineProps<{
 .tags {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 .tags-td {
   width: 100%;
