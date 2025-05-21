@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLoginForm } from './composables/useLoginForm'
-import CustomInput from '@/shared/components/CustomInput.vue'
-import CustomLabel from '@/shared/components/CustomLabel.vue'
+import CustomInput from '@/shared/ui/CustomInput.vue'
+import CustomLabel from '@/shared/ui/CustomLabel.vue'
 import LogoImage from '@/shared/svg/Logo.vue'
 
 const { form, errors, isValid, submit } = useLoginForm()
@@ -61,6 +61,7 @@ const { form, errors, isValid, submit } = useLoginForm()
   box-shadow: 0px 0px 16px 0px rgba(16, 24, 40, 0.04);
   padding: 40px 50px;
   border-radius: 12px;
+  background-color: #ffffff;
 }
 
 .form-header {

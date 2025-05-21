@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DropDownIconColored from '../svg/DropDownIconColored.vue'
 import UserIcon from '../svg/UserIcon.vue'
-import Badge from './Badge.vue'
+import Badge from '../ui/Badge.vue'
 </script>
 
 <template>
@@ -30,6 +30,7 @@ import Badge from './Badge.vue'
   align-items: center;
   border-bottom: 1px solid #eaecf0;
   border-inline: 1px solid #eaecf0;
+  background-color: #ffffff;
 }
 .heading {
   display: flex;

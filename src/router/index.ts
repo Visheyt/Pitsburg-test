@@ -25,6 +25,11 @@ const router = createRouter({
           name: 'Recipes',
           component: () => import('../features/recipes/RecipesPage.vue'),
         },
+        {
+          path: ':pathMatch(.*)*',
+          name: 'NotFound',
+          component: () => import('../shared/components/NotFoundPage.vue'),
+        },
       ],
     },
   ],
