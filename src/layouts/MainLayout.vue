@@ -1,6 +1,10 @@
+<script setup lang="ts">
+import Header from '@/shared/components/Header.vue'
+</script>
+
 <template>
   <div>
-    <header>HEADER</header>
+    <Header />
     <Aside>ASIDE SUQA</Aside>
     <main>
       <router-view />
