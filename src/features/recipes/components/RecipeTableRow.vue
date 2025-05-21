@@ -2,6 +2,7 @@
 import type { BadgeType } from '@/shared/types/dififictulty'
 import Badge from '@/shared/ui/Badge.vue'
 import Tag from '@/shared/ui/Tag.vue'
+import { translateDifficulty } from '@/utils/translateDifficulty'
 
 defineProps<{
   name: string
@@ -11,17 +12,6 @@ defineProps<{
   time: number
   tags: string[]
 }>()
-
-const translateDifficulty = (difficulty: BadgeType) => {
-  switch (difficulty) {
-    case 'Easy':
-      return 'Легко'
-    case 'Medium':
-      return 'Средний'
-    case 'Hard':
-      return 'Тяжелый'
-  }
-}
 </script>
 
 <template>
