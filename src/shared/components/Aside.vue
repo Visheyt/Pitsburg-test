@@ -10,7 +10,7 @@ import { navItems } from '@/data/nav-items'
     </div>
     <nav class="navigation">
       <RouterLink
-        v-for="navItem of navItems"
+        v-for="navItem in navItems"
         :key="navItem.id"
         :to="navItem.routePath"
         class="nav-item"

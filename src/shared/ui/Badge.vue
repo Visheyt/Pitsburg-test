@@ -1,13 +1,15 @@
 <script setup lang="ts">
+import type { BadgeType } from '../types/dififictulty'
+
 defineProps<{
-  badgeStyle: 'admin' | 'easy' | 'medium' | 'hard'
+  badgeStyle: BadgeType | 'admin'
 }>()
 </script>
 
 <template>
-  <div :class="badgeStyle" class="badge">
+  <span :class="badgeStyle" class="badge">
     <slot />
-  </div>
+  </span>
 </template>
 
 <style scoped>
