@@ -1,60 +1,53 @@
 <script setup lang="ts">
-import { useLoginFormValidation } from './composables/useFormValidatation'
+import { useLoginForm } from './composables/useLoginForm'
 import CustomInput from '@/shared/components/CustomInput.vue'
 import CustomLabel from '@/shared/components/CustomLabel.vue'
 import LogoImage from '@/shared/svg/Logo.vue'
 
-const { email, password, emailError, passwordError, validate } = useLoginFormValidation()
-
-const handleSubmit = () => {
-  if (validate()) {
-    console.log('Отправка формы', { email: email.value, password: password.value })
-  }
-}
+const { form, errors, isValid, submit } = useLoginForm()
 </script>
 
 <template>
   <main class="page">
-    <form @submit.prevent="handleSubmit" class="form">
+    <form @submit.prevent="submit" class="form" autocomplete="off">
       <fieldset class="form-header">
-        <LogoImage />
+        <LogoImage class="logo" />
         <h1>Вход в личный кабинет</h1>
       </fieldset>
 
       <fieldset class="form-inputs">
         <div class="form-field">
-          <CustomLabel :for="'email'">Email</CustomLabel>
-          <CustomInput id="email" type="email" placeholder="Введите email" v-model="email" />
-          <p v-if="emailError" class="error">{{ emailError }}</p>
+          <CustomLabel for="email">Email</CustomLabel>
+          <CustomInput
+            id="email"
+            type="email"
+            placeholder="Введите email"
+            v-model="form.email"
+            :error="errors.email"
+          />
+          <p v-if="errors.email" class="error">{{ errors.email }}</p>
         </div>
 
         <div class="form-field">
-          <CustomLabel :for="'password'">Пароль</CustomLabel>
+          <CustomLabel for="password">Пароль</CustomLabel>
           <CustomInput
             id="password"
             type="password"
             placeholder="Введите пароль"
-            v-model="password"
+            v-model="form.password"
+            :error="errors.password"
           />
-          <p v-if="passwordError" class="error">{{ passwordError }}</p>
+          <p v-if="errors.password" class="error">{{ errors.password }}</p>
         </div>
       </fieldset>
 
       <fieldset class="form-buttons">
-        <button type="submit" class="enter-button">Войти</button>
+        <button type="submit" class="enter-button" :disabled="!isValid">Войти</button>
         <button type="button" class="forget-button">Забыли пароль?</button>
       </fieldset>
     </form>
   </main>
 </template>
-
-<style scoped>
-.error {
-  color: red;
-  font-size: 12px;
-  margin-top: 4px;
-}
-</style>
 
 <style scoped>
 .form {
@@ -63,7 +56,7 @@ const handleSubmit = () => {
   gap: 24px;
   width: 100%;
   max-width: 449px;
-  box-shadow: 0px 0px 16px 0px #1018280a;
+  box-shadow: 0px 0px 16px 0px rgba(16, 24, 40, 0.04);
   padding: 40px 50px;
   border-radius: 12px;
 }
@@ -88,24 +81,50 @@ const handleSubmit = () => {
   gap: 6px;
 }
 
+.error {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
 .form-buttons {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
+
 .enter-button {
   border-radius: 8px;
   background-color: var(--violet);
-  color: white;
+  color: #ffffff;
   border: none;
-  padding-block: 14px;
+  padding: 14px;
   font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
+
+.enter-button:hover:not(:disabled) {
+  background-color: #7c3aed;
+}
+
+.enter-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .forget-button {
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  letter-spacing: 0%;
-  color: black;
+  color: #1f2937;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.forget-button:hover {
+  color: #8b5cf6;
 }
 </style>
