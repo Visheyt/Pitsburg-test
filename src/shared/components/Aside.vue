@@ -53,6 +53,11 @@ import { navItems } from '@/data/nav-items'
   align-items: center;
   border-radius: 8px;
   color: '#5A5C5F';
+  transition: background-color 0.3s ease;
+}
+.nav-item:hover {
+  background: #c584e6;
+  color: rgb(49, 49, 49);
 }
 
 .navigation a.router-link-exact-active {
