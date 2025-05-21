@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import { tableHeadItems } from '@/data/tablehead-items'
 import RecipeTableRow from './components/RecipeTableRow.vue'
-import { onMounted } from 'vue'
-import { getRecipes } from '@/api/getRecipes'
-import { useFetch } from '@/shared/composables/useFetch'
-import type { RecipesResponse } from '@/api/types'
 
-const { data, error, loading, execute } = useFetch<RecipesResponse>()
+import Pagination from '@/shared/components/Pagination.vue'
+import { useGetRecipes } from './composables/useGetRecipes'
 
-onMounted(() => {
-  execute(getRecipes)
-})
+const { data, error, loading, currentPage, totalPages } = useGetRecipes()
 </script>
 
 <template>
@@ -33,6 +28,15 @@ onMounted(() => {
           :calories="recipe.caloriesPerServing"
         />
       </tbody>
+      <tfoot class="tfoot">
+        <td colspan="100%">
+          <Pagination
+            :length="totalPages"
+            :current="currentPage"
+            @change="(page) => (currentPage = page)"
+          />
+        </td>
+      </tfoot>
     </table>
   </main>
 </template>
