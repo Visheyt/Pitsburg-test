@@ -1,37 +1,20 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import ListIcon from '../svg/ListIcon.vue'
+import { useSelect } from '../composables/useSelect'
 
 const model = defineModel<string>()
+
 const props = defineProps<{
   options: string[]
   name: string
 }>()
 
-const isOpen = ref(false)
-const selectRef = ref<HTMLElement | null>(null)
+const { toggleDropdown, isOpen, selectRef } = useSelect()
 
 const selectOption = (option: string) => {
   model.value = option
   isOpen.value = false
 }
-
-const toggleDropdown = () => {
-  isOpen.value = !isOpen.value
-}
-
-const handleClickOutside = (event: MouseEvent) => {
-  if (selectRef.value && !selectRef.value.contains(event.target as Node)) {
-    isOpen.value = false
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
-})
-onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside)
-})
 </script>
 
 <template>
