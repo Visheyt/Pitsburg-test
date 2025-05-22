@@ -1,18 +1,16 @@
-# pittsburg-test
+# Project deploy
 
-This template should help get you started developing with Vue 3 in Vite.
+[Deploy](https://visheyt-pittsburgh.netlify.app/recipes)
 
-## Recommended IDE Setup
+## Technologies
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Vue 3
+- Typescript
+- CSS
+- Eslint
+- Prettier
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+## [Api](https://dummyjson.com/docs/recipes)
 
 ## Project Setup
 
@@ -37,3 +35,12 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Screenshots
+
+## Recipes Page :
+![image](https://github.com/user-attachments/assets/ae4deb31-e947-446a-9bfa-f8e66f2cbd28)
+
+## Login Page :
+
+![image](https://github.com/user-attachments/assets/99b94689-3cf7-4137-9ab3-bf8ff57b6047)
