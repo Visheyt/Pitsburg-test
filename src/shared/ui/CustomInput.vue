@@ -17,6 +17,7 @@ const hasIcon = computed(() => !!slots.icon)
 <style>
 .input-icon-wrapper {
   position: relative;
+  border-radius: 8px;
 }
 .input {
   width: 100%;

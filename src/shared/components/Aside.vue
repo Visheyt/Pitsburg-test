@@ -7,7 +7,7 @@ import { navItems } from '@/data/nav-items'
 <template>
   <aside class="aside">
     <div class="aside-header">
-      <Logo />
+      <Logo class="logo" />
       <button class="aside-button">
         <DoubleLeftIcon />
       </button>
@@ -30,7 +30,6 @@ import { navItems } from '@/data/nav-items'
 .aside {
   display: flex;
   flex-direction: column;
-  padding-block: 13px;
   min-width: 236px;
   background-color: #ffffff;
 }
@@ -40,6 +39,10 @@ import { navItems } from '@/data/nav-items'
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.logo {
+  width: 115px;
+  height: 36px;
 }
 .navigation {
   border-right: 1px solid #eaecf0;

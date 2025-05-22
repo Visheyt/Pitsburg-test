@@ -7,7 +7,7 @@ import Badge from '../ui/Badge.vue'
 <template>
   <header class="header">
     <div class="heading">
-      <h1>Рецепты</h1>
+      <h2>Рецепты</h2>
       <Badge badge-style="admin">Режим администратора</Badge>
     </div>
     <div class="user">
@@ -26,7 +26,7 @@ import Badge from '../ui/Badge.vue'
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 16px 20px;
+  padding: 10px 20px;
   align-items: center;
   border-bottom: 1px solid #eaecf0;
   border-inline: 1px solid #eaecf0;
