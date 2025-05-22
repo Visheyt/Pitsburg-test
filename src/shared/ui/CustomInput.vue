@@ -30,7 +30,7 @@ const hasIcon = computed(() => !!slots.icon)
   width: 22px;
   height: 22px;
   left: 9px;
-  top: 8px;
+  top: 11px;
 }
 .input:focus-visible {
   outline: 1px solid var(--violet);
