@@ -10,7 +10,9 @@ const { data, error, loading, currentPage, totalPages, handleSearch, search, han
 <template>
   <main class="recipe-page">
     <FilterBar v-model="search" :handleSearch />
+    <div v-if="loading">LOADING</div>
     <RecipeTable
+      v-else
       :data="data ? data.recipes : []"
       :totalPages="totalPages"
       :currentPage="currentPage"

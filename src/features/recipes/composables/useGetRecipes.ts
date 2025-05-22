@@ -4,7 +4,7 @@ import { searchRecipes } from '@/api/searchRecipe'
 import { sortRecipes } from '@/api/sortRecipes'
 import type { RecipesResponse } from '@/api/types'
 import { useFetch } from '@/shared/composables/useFetch'
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useSearchRecipes } from './useSearchRecipes'
 import { useSortRecipes } from './useSortRecipes'
 
@@ -43,7 +43,9 @@ export function useGetRecipes() {
     triggerFetch()
   })
 
-  triggerFetch()
+  onMounted(() => {
+    triggerFetch()
+  })
 
   return {
     currentPage,

@@ -32,6 +32,13 @@ defineProps<{
 </template>
 
 <style scoped>
+.table-row {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.table-row:hover {
+  background-color: #f7f8fc;
+}
 .name-td {
   width: 100%;
   width: 190px;

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DropDownIcon from '@/shared/svg/DropDownIcon.vue'
 import ListIcon from '@/shared/svg/ListIcon.vue'
+import SearchIcon from '@/shared/svg/SearchIcon.vue'
 import CustomInput from '@/shared/ui/CustomInput.vue'
 
 const searchValue = defineModel<string>({ default: '' })
@@ -23,7 +24,11 @@ defineProps<{
         placeholder="Найти рецепт"
         v-model="searchValue"
         @keydown.enter="handleSearch(searchValue)"
-      />
+      >
+        <template #icon>
+          <SearchIcon class="input-icon" />
+        </template>
+      </CustomInput>
     </div>
   </div>
 </template>
