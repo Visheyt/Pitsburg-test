@@ -1,21 +1,30 @@
 <script setup lang="ts">
-import { useGetRecipes } from './composables/useGetRecipes'
+import { useRecipes } from './composables/useRecipes'
 import FilterBar from './components/FilterBar.vue'
 import RecipeTable from './components/RecipeTable.vue'
 
-const { data, error, loading, currentPage, totalPages, handleSearch, search, handleSort } =
-  useGetRecipes()
+const {
+  data,
+  error,
+  loading,
+  currentPage,
+  totalPages,
+  handleSearch,
+  search,
+  handleSort,
+  selectedTag,
+} = useRecipes()
 </script>
 
 <template>
   <main class="recipe-page">
-    <FilterBar v-model="search" :handleSearch />
+    <FilterBar v-model:search="search" :handleSearch v-model:tag="selectedTag" />
     <RecipeTable
       :data="data ? data.recipes : []"
-      :totalPages="totalPages"
-      :currentPage="currentPage"
+      :totalPages
+      :currentPage
       :handleSort
-      :loading="loading"
+      :loading
       @change="(page) => (currentPage = page)"
     />
   </main>

@@ -1,10 +1,8 @@
 import { getTags } from '@/api/getTags'
 import { useFetch } from '@/shared/composables/useFetch'
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 
-export const useGetTags = () => {
-  const selectedTag = ref<string>()
-
+export const useTags = () => {
   const { data, execute } = useFetch<string[]>()
 
   onMounted(() => {
@@ -13,6 +11,5 @@ export const useGetTags = () => {
 
   return {
     data,
-    selectedTag,
   }
 }

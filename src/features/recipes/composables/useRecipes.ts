@@ -7,8 +7,10 @@ import { useFetch } from '@/shared/composables/useFetch'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useSearchRecipes } from './useSearchRecipes'
 import { useSortRecipes } from './useSortRecipes'
+import { useRecipesByTag } from './useRecipesByTag'
+import { getRecipesByTag } from '@/api/getRecipesByTag'
 
-export function useGetRecipes() {
+export function useRecipes() {
   const currentPage = ref(1)
 
   const totalPages = computed(() =>
@@ -21,6 +23,8 @@ export function useGetRecipes() {
 
   const { sort, handleSort } = useSortRecipes(currentPage, triggerFetch)
 
+  const { selectedTag } = useRecipesByTag(currentPage, triggerFetch)
+
   function triggerFetch() {
     execute(fetchRecipes)
   }
@@ -30,6 +34,10 @@ export function useGetRecipes() {
 
     if (search.value.length > 3) {
       return searchRecipes(search.value, page)
+    }
+
+    if (selectedTag.value) {
+      return getRecipesByTag(selectedTag.value, page)
     }
 
     if (sort.value) {
@@ -55,6 +63,7 @@ export function useGetRecipes() {
     error,
     search,
     sort,
+    selectedTag,
     handleSearch,
     handleSort,
   }

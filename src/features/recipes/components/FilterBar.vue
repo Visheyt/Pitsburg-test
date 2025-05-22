@@ -2,14 +2,16 @@
 import SearchIcon from '@/shared/svg/SearchIcon.vue'
 import CustomInput from '@/shared/ui/CustomInput.vue'
 import CustomSelect from '@/shared/ui/CustomSelect.vue'
-import { useGetTags } from '../composables/useGetTags'
+import { useTags } from '../composables/useTags'
 
-const searchValue = defineModel<string>({ default: '' })
+const searchValue = defineModel<string>('search', { default: '' })
+const selectedTag = defineModel<string>('tag', { default: '' })
+
 defineProps<{
   handleSearch: (query: string) => void
 }>()
 
-const { data: tags, selectedTag } = useGetTags()
+const { data: tags } = useTags()
 </script>
 
 <template>
