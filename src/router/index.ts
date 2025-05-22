@@ -36,6 +36,7 @@ const router = createRouter({
           component: () => import('../shared/components/NotfoundPage.vue'),
         },
       ],
+      meta: { requiresAuth: true },
     },
   ],
 })
