@@ -6,6 +6,7 @@ import LoginInputs from './LoginInputs.vue'
 import LoginButtons from './LoginButtons.vue'
 
 const { form, errors, isValid, submit } = useLoginForm()
+
 const isPasswordVisible = ref(false)
 
 const handlePasswordVisible = () => {

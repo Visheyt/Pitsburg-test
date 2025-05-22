@@ -1,5 +1,6 @@
+import { reactive, computed, watch } from 'vue'
 import router from '@/router'
-import { reactive, computed } from 'vue'
+import { useAuthStorage } from './useAuthStorage'
 
 interface FormData {
   email: string
@@ -7,39 +8,40 @@ interface FormData {
 }
 
 export const useLoginForm = () => {
-  const form = reactive<FormData>({
-    email: '',
-    password: '',
-  })
+  const form = reactive<FormData>({ email: '', password: '' })
+  const errors = reactive({ email: '', password: '' })
+  const { login } = useAuthStorage()
 
-  const validateEmail = (email: string): string => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email.trim()) ? '' : 'Пожалуйста введите валидный email адрес'
-  }
+  const validateEmail = (email: string): string =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) ? '' : 'Введите валидный email'
 
-  const validatePassword = (password: string): string => {
-    return password.trim().length >= 5 ? '' : 'Пароль должен состоять минимум из 5 знаков'
-  }
+  const validatePassword = (password: string): string =>
+    password.trim().length >= 5 ? '' : 'Пароль должен быть от 5 символов'
 
-  const errors = computed(() => ({
-    email: validateEmail(form.email),
-    password: validatePassword(form.password),
-  }))
+  watch(
+    () => [form.email, form.password] as const,
+    ([email, password]) => {
+      errors.email = validateEmail(email)
+      errors.password = validatePassword(password)
+    },
+  )
 
-  const isValid = computed(() => {
-    return !errors.value.email && !errors.value.password
-  })
+  const isValid = computed(() => !errors.email && !errors.password)
 
-  const submit = async () => {
+  const submit = () => {
     if (!isValid.value) return
+
+    const { success, error } = login(form.email, form.password)
+    if (!success) {
+      errors.password = error!
+      return
+    }
+
+    localStorage.setItem('isAuthorized', 'true')
+    localStorage.setItem('userEmail', form.email)
 
     router.push('/recipes')
   }
 
-  return {
-    form,
-    errors,
-    isValid,
-    submit,
-  }
+  return { form, errors, isValid, submit }
 }

@@ -24,15 +24,25 @@ const router = createRouter({
           path: 'recipes',
           name: 'Recipes',
           component: () => import('../features/recipes/RecipesPage.vue'),
+          meta: { requiresAuth: true },
         },
         {
           path: ':pathMatch(.*)*',
           name: 'NotFound',
-          component: () => import('../shared/components/NotFoundPage.vue'),
+          component: () => import('../shared/components/NotfoundPage.vue'),
         },
       ],
     },
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  const isAuthorized = localStorage.getItem('isAuthorized') === 'true'
+  if (to.meta.requiresAuth && !isAuthorized) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

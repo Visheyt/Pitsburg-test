@@ -2,6 +2,8 @@
 import DropDownIconColored from '../svg/DropDownIconColored.vue'
 import UserIcon from '../svg/UserIcon.vue'
 import Badge from '../ui/Badge.vue'
+
+const userName = localStorage.getItem('userEmail')
 </script>
 
 <template>
@@ -13,8 +15,8 @@ import Badge from '../ui/Badge.vue'
     <div class="user">
       <UserIcon />
       <div class="user-data">
-        <span class="username">Alex Shuklin</span>
-        <span class="email">+998909967612</span>
+        <span class="username">{{ userName }}</span>
+        <span class="email">+998907773277</span>
       </div>
       <DropDownIconColored />
     </div>
