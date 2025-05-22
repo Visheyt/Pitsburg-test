@@ -24,6 +24,7 @@ export const useLoginForm = () => {
       errors.email = validateEmail(email)
       errors.password = validatePassword(password)
     },
+    { immediate: true },
   )
 
   const isValid = computed(() => !errors.email && !errors.password)

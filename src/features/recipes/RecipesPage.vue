@@ -19,7 +19,9 @@ const {
 <template>
   <main class="recipe-page">
     <FilterBar v-model:search="search" :handleSearch v-model:tag="selectedTag" />
+    <div v-if="error">{{ error }}</div>
     <RecipeTable
+      v-else
       :data="data ? data.recipes : []"
       :totalPages
       :currentPage

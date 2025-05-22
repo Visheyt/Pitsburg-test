@@ -20,8 +20,8 @@ const handlePasswordVisible = () => {
     <LoginInputs
       v-model:password="form.password"
       v-model:email="form.email"
-      :errors="errors"
-      :isPasswordVisible="isPasswordVisible"
+      :errors
+      :isPasswordVisible
       @togglePasswordVisibility="handlePasswordVisible"
     />
     <LoginButtons :isValid="isValid" />
