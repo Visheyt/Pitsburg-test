@@ -9,11 +9,11 @@ defineProps<{
   isPasswordVisible: boolean
 }>()
 
-const emits = defineEmits(['togglePasswordVisibility'])
+const emit = defineEmits<{
+  (e: 'togglePasswordVisibility'): void
+}>()
 
-const handleClick = () => {
-  emits('togglePasswordVisibility')
-}
+const togglePasswordVisibility = () => emit('togglePasswordVisibility')
 
 const email = defineModel<string>('email', { default: '' })
 
@@ -42,7 +42,7 @@ const password = defineModel<string>('password', { default: '' })
         v-model="password"
         :error="errors.password"
       />
-      <button type="button" class="show-password-btn" @click="handleClick">
+      <button type="button" class="show-password-btn" @click="togglePasswordVisibility">
         <component :is="isPasswordVisible ? OpenEyeIcon : ClosedEyeIcon" />
       </button>
       <p v-if="errors.password" class="error">{{ errors.password }}</p>
