@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import DoubleLeftIcon from '../svg/DoubleLeftIcon.vue'
+import DownIcon from '../svg/DownIcon.vue'
 import Logo from '../svg/Logo.vue'
 import { navItems } from '@/data/nav-items'
 </script>
@@ -19,8 +20,13 @@ import { navItems } from '@/data/nav-items'
         :to="navItem.routePath"
         class="nav-item"
       >
-        <component :is="navItem.icon" class="icon" />
-        {{ navItem.name }}
+        <div class="nav-item-name">
+          <component :is="navItem.icon" class="icon" />
+          {{ navItem.name }}
+        </div>
+        <div v-if="navItem.dropDown">
+          <DownIcon />
+        </div>
       </RouterLink>
     </nav>
   </aside>
@@ -69,6 +75,13 @@ import { navItems } from '@/data/nav-items'
   border-radius: 8px;
   color: '#5A5C5F';
   transition: background-color 0.3s ease;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-item-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .nav-item:hover {
   background: #c584e6;
