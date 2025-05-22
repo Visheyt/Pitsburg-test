@@ -2,7 +2,6 @@
 import { useGetRecipes } from './composables/useGetRecipes'
 import FilterBar from './components/FilterBar.vue'
 import RecipeTable from './components/RecipeTable.vue'
-import Loader from '@/shared/ui/Loader.vue'
 
 const { data, error, loading, currentPage, totalPages, handleSearch, search, handleSort } =
   useGetRecipes()
@@ -11,13 +10,12 @@ const { data, error, loading, currentPage, totalPages, handleSearch, search, han
 <template>
   <main class="recipe-page">
     <FilterBar v-model="search" :handleSearch />
-    <Loader v-if="loading" />
     <RecipeTable
-      v-else
       :data="data ? data.recipes : []"
       :totalPages="totalPages"
       :currentPage="currentPage"
       :handleSort
+      :loading="loading"
       @change="(page) => (currentPage = page)"
     />
   </main>

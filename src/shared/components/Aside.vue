@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import DoubleLeftIcon from '../svg/DoubleLeftIcon.vue'
 import Logo from '../svg/Logo.vue'
 import { navItems } from '@/data/nav-items'
 </script>
@@ -7,6 +8,9 @@ import { navItems } from '@/data/nav-items'
   <aside class="aside">
     <div class="aside-header">
       <Logo />
+      <button class="aside-button">
+        <DoubleLeftIcon />
+      </button>
     </div>
     <nav class="navigation">
       <RouterLink
@@ -33,6 +37,9 @@ import { navItems } from '@/data/nav-items'
 .aside-header {
   padding: 13px 12px 13px 16px;
   border-bottom: 1px solid #8a8f9329;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .navigation {
   border-right: 1px solid #eaecf0;
@@ -40,6 +47,11 @@ import { navItems } from '@/data/nav-items'
   flex-direction: column;
   gap: 8px;
   padding: 12px;
+}
+.aside-button {
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #eef2f5;
 }
 .nav-item {
   padding: 8px;

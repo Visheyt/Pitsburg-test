@@ -1,24 +1,20 @@
 <script setup lang="ts">
-import DropDownIcon from '@/shared/svg/DropDownIcon.vue'
-import ListIcon from '@/shared/svg/ListIcon.vue'
 import SearchIcon from '@/shared/svg/SearchIcon.vue'
 import CustomInput from '@/shared/ui/CustomInput.vue'
+import CustomSelect from '@/shared/ui/CustomSelect.vue'
+import { useGetTags } from '../composables/useGetTags'
 
 const searchValue = defineModel<string>({ default: '' })
 defineProps<{
   handleSearch: (query: string) => void
 }>()
+
+const { data: tags, selectedTag } = useGetTags()
 </script>
 
 <template>
   <div class="container">
-    <div class="tags-select">
-      <div>
-        <ListIcon />
-        <span>Теги</span>
-      </div>
-      <DropDownIcon />
-    </div>
+    <CustomSelect :options="tags ?? []" v-model="selectedTag" name="Теги" />
     <div class="input-container">
       <CustomInput
         placeholder="Найти рецепт"

@@ -4,12 +4,14 @@ import { tableHeadItems } from '@/data/tablehead-items'
 import Pagination from '@/shared/components/Pagination.vue'
 import RecipeTableRow from './RecipeTableRow.vue'
 import FilterIcon from '@/shared/svg/FilterIcon.vue'
+import Loader from '@/shared/ui/Loader.vue'
 
 defineProps<{
   data: Recipe[]
   totalPages: number
   currentPage: number
   handleSort: () => void
+  loading: boolean
 }>()
 
 const emit = defineEmits<{
@@ -31,6 +33,7 @@ const emit = defineEmits<{
         </th>
       </tr>
     </thead>
+    <Loader v-if="loading" />
     <tbody>
       <RecipeTableRow
         v-for="recipe in data"

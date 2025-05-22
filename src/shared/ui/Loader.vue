@@ -10,13 +10,14 @@
 .loader {
   position: fixed;
   top: 50%;
-  left: 55%;
+  left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
+  background-color: rgba(249, 249, 249, 0.402);
 }
 .spinner {
   width: 40px;
