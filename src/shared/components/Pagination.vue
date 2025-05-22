@@ -30,7 +30,7 @@ const prevPage = () => {
 
 <template>
   <div class="pagination">
-    <button @click="prevPage">
+    <button @click="prevPage" class="pagination-button">
       <LeftIcon />
     </button>
     <div class="pagination-items">
@@ -44,7 +44,7 @@ const prevPage = () => {
         {{ index + 1 }}
       </div>
     </div>
-    <button @click="nextPage">
+    <button @click="nextPage" class="pagination-button">
       <RightIcon />
     </button>
   </div>
@@ -86,5 +86,11 @@ const prevPage = () => {
 .active {
   background: #af52de;
   color: #ffffff;
+}
+.pagination-button {
+  color: #5a5c5f;
+}
+.pagination-button:hover {
+  color: var(--violet);
 }
 </style>
