@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { tableHeadItems } from '@/data/tablehead-items'
 import RecipeTableRow from './components/RecipeTableRow.vue'
-
 import Pagination from '@/shared/components/Pagination.vue'
 import { useGetRecipes } from './composables/useGetRecipes'
+import FilterBar from './components/FilterBar.vue'
 
-const { data, error, loading, currentPage, totalPages } = useGetRecipes()
+const { data, error, loading, currentPage, totalPages, handleSearch, searchValue } = useGetRecipes()
 </script>
 
 <template>
   <main class="recipe-page">
+    <FilterBar v-model="searchValue" :handleSearch />
     <table class="recipe-table">
       <thead>
         <tr>
@@ -29,13 +30,15 @@ const { data, error, loading, currentPage, totalPages } = useGetRecipes()
         />
       </tbody>
       <tfoot class="tfoot">
-        <td colspan="100%">
-          <Pagination
-            :length="totalPages"
-            :current="currentPage"
-            @change="(page) => (currentPage = page)"
-          />
-        </td>
+        <tr>
+          <td colspan="100%">
+            <Pagination
+              :length="totalPages"
+              :current="currentPage"
+              @change="(page) => (currentPage = page)"
+            />
+          </td>
+        </tr>
       </tfoot>
     </table>
   </main>
@@ -48,10 +51,12 @@ const { data, error, loading, currentPage, totalPages } = useGetRecipes()
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px;
 }
 .recipe-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   background-color: white;
   border-radius: 12px;
   border: 1px solid #eaecf0;
