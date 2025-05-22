@@ -2,6 +2,7 @@
 import { useGetRecipes } from './composables/useGetRecipes'
 import FilterBar from './components/FilterBar.vue'
 import RecipeTable from './components/RecipeTable.vue'
+import Loader from '@/shared/ui/Loader.vue'
 
 const { data, error, loading, currentPage, totalPages, handleSearch, search, handleSort } =
   useGetRecipes()
@@ -10,7 +11,7 @@ const { data, error, loading, currentPage, totalPages, handleSearch, search, han
 <template>
   <main class="recipe-page">
     <FilterBar v-model="search" :handleSearch />
-    <div v-if="loading">LOADING</div>
+    <Loader v-if="loading" />
     <RecipeTable
       v-else
       :data="data ? data.recipes : []"
@@ -27,8 +28,7 @@ const { data, error, loading, currentPage, totalPages, handleSearch, search, han
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 20px;
+  position: relative;
 }
 </style>

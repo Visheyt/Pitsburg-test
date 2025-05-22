@@ -16,7 +16,7 @@ import Header from '@/shared/components/Header.vue'
 <style scoped>
 .main-layout {
   display: flex;
-  flex: 1;
+  height: 100vh;
 }
 .main-content {
   width: 100%;
