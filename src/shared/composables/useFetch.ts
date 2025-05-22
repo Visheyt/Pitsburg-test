@@ -5,7 +5,7 @@ export function useFetch<T>() {
   const error = ref<null | string>(null)
   const data = ref<T | null>(null)
 
-  const execute = async (fetchFunc: () => Promise<T>) => {
+  const execute = async (fetchFunc: () => Promise<T> | (() => void)) => {
     loading.value = true
     error.value = null
     try {

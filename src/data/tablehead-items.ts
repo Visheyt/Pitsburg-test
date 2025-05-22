@@ -2,6 +2,7 @@ export const tableHeadItems = [
   {
     id: 0,
     name: 'Название',
+    hasFilter: true,
   },
   {
     id: 1,
