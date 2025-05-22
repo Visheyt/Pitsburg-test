@@ -6,6 +6,10 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      redirect: '/recipes',
+    },
+    {
       path: '/login',
       component: AuthLayout,
       children: [
@@ -24,6 +28,7 @@ const router = createRouter({
           path: 'recipes',
           name: 'Recipes',
           component: () => import('../features/recipes/RecipesPage.vue'),
+          meta: { requiresAuth: true },
         },
         {
           path: ':pathMatch(.*)*',
@@ -31,7 +36,6 @@ const router = createRouter({
           component: () => import('../shared/components/NotfoundPage.vue'),
         },
       ],
-      meta: { requiresAuth: true },
     },
   ],
 })
