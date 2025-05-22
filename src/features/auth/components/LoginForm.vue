@@ -9,7 +9,7 @@ const { form, errors, isValid, submit } = useLoginForm()
 const isPasswordVisible = ref(false)
 
 const handlePasswordVisible = () => {
-  isPasswordVisible.value = !isPasswordVisible.value
+  if (form.password.length > 0) isPasswordVisible.value = !isPasswordVisible.value
 }
 </script>
 
