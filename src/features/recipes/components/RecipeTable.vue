@@ -42,7 +42,7 @@ const emit = defineEmits<{
         :cuisine="recipe.cuisine"
         :difficulty="recipe.difficulty"
         :time="recipe.cookTimeMinutes"
-        :tags="recipe.tags"
+        :tags="recipe.tags.slice(0, 2)"
         :calories="recipe.caloriesPerServing"
       />
     </tbody>
